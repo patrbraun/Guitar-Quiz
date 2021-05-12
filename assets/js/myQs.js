@@ -1,3 +1,4 @@
+console.log("Entering myQs.js");
 var questions = [
     {
         title: "Example question",
