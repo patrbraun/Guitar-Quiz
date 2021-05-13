@@ -8,7 +8,7 @@ Answer the questions and see how many you get correct.
 
 Link to the application: https://patrbraun.github.io/Guitar-Quiz/
 
-![Quiz screenshot placeholder](assets/images/screenshot.png)
+![Quiz screenshot placeholder](assets/images/screenshot.PNG)
 
 Click the "Start Quiz" button to start.
 
