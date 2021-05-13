@@ -13,7 +13,7 @@ var questionEl = $("#question");
 var choicesEl = $("#choices");
 var scoreEl = $("#score");
 
-function start(){
+function start() {
     scoreEl.empty();
     time = 100;
     qIndex = 0;
@@ -27,7 +27,7 @@ function start(){
     renderQs();
 }
 
-function renderQs(){
+function renderQs() {
     //get current questions object from array
     current = questionsArr[qIndex];
     qIndex++;
@@ -36,7 +36,7 @@ function renderQs(){
     //clear old question choices
     questionEl.empty();
     choicesEl.empty();
-   
+
     var text = $('<h2>').text(current.title);
     questionEl.append(text);
     //loop over choices and create new button for new choices
@@ -44,7 +44,7 @@ function renderQs(){
 }
 
 //function to create and append buttons
-function create(item, index, arr){
+function create(item, index, arr) {
     var button = $('<button>').text(item);
     //attach click event listener
     button.on('click', qClicked);
@@ -53,25 +53,25 @@ function create(item, index, arr){
 }
 
 //function for questionClicked
-function qClicked(){
+function qClicked() {
     console.log("qClicked");
     //check if user answered wrong
-    if($(this).text() !== current.answer){
+    if ($(this).text() !== current.answer) {
         console.log("Wrong");
         wrong++;
     }
     //check to see if out of questions, if yes run end quiz function 
     //else get next questions
-    if(qIndex === questionsArr.length){
+    if (qIndex === questionsArr.length) {
         quizEnd();
     }
-    else{
+    else {
         renderQs();
     }
 }
 
 //end quiz
-function quizEnd(){
+function quizEnd() {
     console.log("quizEnd")
     quizEl.hide();
     //clear time interval
@@ -79,7 +79,7 @@ function quizEnd(){
     //show final scores
     scoreEl.show();
     //calculate score
-    var temp = ((questionsArr.length - wrong)/questionsArr.length)*100;
+    var temp = ((questionsArr.length - wrong) / questionsArr.length) * 100;
     temp = temp.toFixed(2);
     //Display score on page
     var score = $('<h1>').text(temp + "% Correct");
@@ -88,12 +88,12 @@ function quizEnd(){
 }
 
 //time function
-function timer(){
+function timer() {
     time--;
     //display timer on page
     timerEl.text(time);
     //if time hits 0 run quizEnd()
-    if(time == 0){
+    if (time == 0) {
         quizEnd();
     }
 }
