@@ -16,4 +16,14 @@ var questionsArr = [
         choices: ["Nub", "Pick", "Bit", "Bow"],
         answer:"Pick"
     },
+    {
+        title: "What are the metal strips going up the neck called?",
+        choices: ["Slides", "Lines", "Bars", "Frets"],
+        answer:"Frets"
+    },
+    {
+        title: "What is not a type of guitar?",
+        choices: ["Classical", "Electric", "Accoustic", "Traditional"],
+        answer:"Traditional"
+    },
 ];

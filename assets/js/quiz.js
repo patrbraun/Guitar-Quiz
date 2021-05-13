@@ -3,7 +3,7 @@ console.log("Entering quiz.js");
 //Quiz state variable
 var time;
 var qIndex;
-var wrong;
+var right;
 var myTimer;
 
 var quizEl = $("#quiz");
@@ -15,10 +15,13 @@ var scoreEl = $("#score");
 
 function start() {
     scoreEl.empty();
-    time = 100;
+    time = 60;
     qIndex = 0;
-    wrong = 0;
+    right = 0;
     startBtn.hide();
+    $('#qHead').remove();
+    quizEl.prepend($('<h1>').attr('id','qHead').text("Questions"));
+    timerEl.text(time);
     quizEl.show();
     scoreEl.hide();
     console.log("start");
@@ -56,10 +59,14 @@ function create(item, index, arr) {
 function qClicked() {
     console.log("qClicked");
     //check if user answered wrong
-    if ($(this).text() !== current.answer) {
-        console.log("Wrong");
-        wrong++;
+    if ($(this).text() === current.answer) {
+        console.log("right");
+        right++;
     }
+    // if ($(this).text() !== current.answer) {
+    //     console.log("Wrong");
+    //     wrong++;
+    // }
     //check to see if out of questions, if yes run end quiz function 
     //else get next questions
     if (qIndex === questionsArr.length) {
@@ -79,7 +86,7 @@ function quizEnd() {
     //show final scores
     scoreEl.show();
     //calculate score
-    var temp = ((questionsArr.length - wrong) / questionsArr.length) * 100;
+    var temp = ((questionsArr.length - (questionsArr.length - right)) / questionsArr.length) * 100;
     temp = temp.toFixed(2);
     //Display score on page
     var score = $('<h1>').text(temp + "% Correct");
