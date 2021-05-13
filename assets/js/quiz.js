@@ -30,11 +30,7 @@ function renderQs(){
     choicesEl.empty();
    
     //loop over choices and create new button for new choices
-        //.forEach()
-    
-    qChoices = current.choices;
-    
-    qChoices.forEach(create);
+    current.choices.forEach(create);
 }
 
 //function to create and append buttons
