@@ -8,7 +8,7 @@ Answer the questions and see how many you get correct.
 
 Link to the application: https://patrbraun.github.io/Guitar-Quiz/
 
-![Quiz screenshot placeholder](assets/images/#)
+![Quiz screenshot placeholder](assets/images/screenshot.png)
 
 Click the "Start Quiz" button to start.
 
@@ -20,4 +20,8 @@ Click highscores to see previous scores.
 
 ## Known Issues
 
-Still working on a lot.
+Highscores not working.
+
+Scores are not saved to local storage.
+
+Still working on styling.
