@@ -7,9 +7,11 @@ var qIndex = 0;
 var quiz = $("#quiz");
 var timerEl = $("#timer");
 var startBtn = $("#start-btn");
-var questionWindow = $("#question-window");
+var questionEl = $("#question");
+var choicesEl = $("#choices");
 
 function start(){
+    startBtn.hide();
     quiz.show();
     console.log("start");
     //timer Starts and get quiz items
@@ -19,22 +21,34 @@ function start(){
 
 function renderQs(){
     //get current questions object from array
-    current = questions[qIndex];
+    current = questionsArr[qIndex];
     qIndex++;
     //update html with current question
 
     //clear old question choices
-    questionWindow.empty();
+    questionEl.empty();
+    choicesEl.empty();
+   
     //loop over choices and create new button for new choices
         //.forEach()
+    
+    qChoices = current.choices;
+    
+    qChoices.forEach(create);
+}
 
-    //attach click event listener to each choice
-
-    //display on page
+//function to create and append buttons
+function create(item, index, arr){
+    var button = $('<button>').text(item);
+    //attach click event listener
+    button.on('click', qClicked);
+    //Display button
+    choicesEl.append(button);
 }
 
 //function for questionClicked
 function qClicked(){
+    console.log("qClicked");
     //check if user answered wrong
 
     //create if to check if time has hit 0 or time is still remaining
