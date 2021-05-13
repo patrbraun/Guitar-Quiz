@@ -3,19 +3,22 @@ console.log("Entering quiz.js");
 //Quiz state variable
 var time = 1000;
 var qIndex = 0;
+var wrong = 0;
+var myTimer;
 
-var quiz = $("#quiz");
+var quizEl = $("#quiz");
 var timerEl = $("#timer");
 var startBtn = $("#start-btn");
 var questionEl = $("#question");
 var choicesEl = $("#choices");
+var scoreEl = $("#score");
 
 function start(){
     startBtn.hide();
-    quiz.show();
+    quizEl.show();
     console.log("start");
     //timer Starts and get quiz items
-    setInterval(timer, 1000);
+    myTimer = setInterval(timer, 1000);
     renderQs();
 }
 
@@ -29,6 +32,8 @@ function renderQs(){
     questionEl.empty();
     choicesEl.empty();
    
+    var text = $('<h2>').text(current.title);
+    questionEl.append(text);
     //loop over choices and create new button for new choices
     current.choices.forEach(create);
 }
@@ -46,29 +51,34 @@ function create(item, index, arr){
 function qClicked(){
     console.log("qClicked");
     //check if user answered wrong
-
-    //create if to check if time has hit 0 or time is still remaining
-    //if time < 0{time =0}
-
-    //display time on page
-
-    //check to see if the answer is correct, if correct move on 
-    //move on to next questions
-
+    if($(this).text() !== current.answer){
+        console.log("Wrong");
+        wrong++;
+    }
     //check to see if out of questions, if yes run end quiz function 
     //else get next questions
-    //if(currentQIndex === questions.length())
-    //  quizEnd();
-    //else{
-    // renderQs();}
+    if(qIndex === questionsArr.length){
+        quizEnd();
+    }
+    else{
+        renderQs();
+    }
 }
 
 //end quiz
 function quizEnd(){
+    console.log("quizEnd")
+    quizEl.hide();
     //clear time interval
+    clearInterval(myTimer);
     //show final scores
-        //.hide() and .show()
-    //
+    scoreEl.show();
+    //calculate score
+    var temp = ((questionsArr.length - wrong)/questionsArr.length)*100;
+    temp = temp.toFixed(2);
+    //Display score on page
+    var score = $('<h1>').text(temp + "% Correct");
+    scoreEl.append(score);
 }
 
 //time function
@@ -77,6 +87,9 @@ function timer(){
     //display timer on page
     timerEl.text(time);
     //if time hits 0 run quizEnd()
+    if(time == 0){
+        quizEnd();
+    }
 }
 
 //create function for highscores
@@ -92,5 +105,6 @@ function timer(){
 //redirect to highscores page
 //window.location.href
 
-quiz.hide();
+scoreEl.hide();
+quizEl.hide();
 startBtn.on("click", start);
