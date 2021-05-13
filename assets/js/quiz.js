@@ -1,9 +1,9 @@
 console.log("Entering quiz.js");
 
 //Quiz state variable
-var time = 1000;
-var qIndex = 0;
-var wrong = 0;
+var time;
+var qIndex;
+var wrong;
 var myTimer;
 
 var quizEl = $("#quiz");
@@ -14,8 +14,13 @@ var choicesEl = $("#choices");
 var scoreEl = $("#score");
 
 function start(){
+    scoreEl.empty();
+    time = 100;
+    qIndex = 0;
+    wrong = 0;
     startBtn.hide();
     quizEl.show();
+    scoreEl.hide();
     console.log("start");
     //timer Starts and get quiz items
     myTimer = setInterval(timer, 1000);
@@ -79,6 +84,7 @@ function quizEnd(){
     //Display score on page
     var score = $('<h1>').text(temp + "% Correct");
     scoreEl.append(score);
+    startBtn.show();
 }
 
 //time function
