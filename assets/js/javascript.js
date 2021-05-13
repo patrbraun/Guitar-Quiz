@@ -1,1 +1,0 @@
-console.log("Entering javascript.js");

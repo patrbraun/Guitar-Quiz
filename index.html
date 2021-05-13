@@ -10,20 +10,42 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <title>Guitar Quiz</title>
 </head>
+
+
+
 <body>
-
-    <header>
-        <h1>Guitar Quiz</h1>
-        <nav>
-            <li><a href="highscores.html">Highscores</a></li>
-        </nav>
+    <header class ="container my-5">
+       <div class = "row">
+           <div class="col-12 col-md-8 col-xl-9">
+                <h1>Guitar Quiz</h1>
+           </div>
+           <div class="col-12 col-md-8 col-xl-9">
+                <nav>
+                    <li><a href="highscores.html">Highscores</a></li>
+                </nav>
+           </div>
+       </div>
     </header>
-    <main>
+    <section class="container">
+        <div class="row justify-content-center">
+            <div><button type="button" id="start-btn" class="btn btn-primary btn-lg">Start Quiz</button></div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Starts hidden -->
+    <section id="quiz">
+        <h1>QUIIIIIIZS</h1>
+        <p id="timer"></p>
+        <section id="question-window">
+            <p>TEST CLEAR</p>
+        </section>
+    </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="assets/js/myQs.js"></script>
+<script src="assets/js/quiz.js"></script>
+<script src="assets/js/highscore.js"></script>
 </body>
 </html>
