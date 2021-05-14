@@ -20,8 +20,6 @@ Click highscores to see previous scores.
 
 ## Known Issues
 
-Highscores not working.
-
-Scores are not saved to local storage.
+Highscores not sorted.
 
 Still working on styling.
