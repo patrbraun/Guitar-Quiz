@@ -9,7 +9,7 @@ function printScores(){
     //function that retrieves scores from local storage
     //display on page
     var text = JSON.parse(localStorage.getItem('scores'));
-    if(text.length > 0){
+    if(text && text.length > 0){
         text.forEach(function(item){
             scoresEl.append($("<h3>").text(item.name + ": " + item.score));
         });
