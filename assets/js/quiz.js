@@ -74,7 +74,7 @@ function qClicked() {
 
 //end quiz
 function quizEnd() {
-    console.log("quizEnd")
+    console.log("quizEnd");
     quizEl.hide();
     //clear time interval
     clearInterval(myTimer);
@@ -110,6 +110,8 @@ function saveScore(calcScore){
             score: calcScore
         };
         scores.push(thisScore);
+        //sorts scores from largest to smallest
+        scores.sort((x,y) => y.score - x.score);
         //saves scores to local storage
         localStorage.setItem("scores", JSON.stringify(scores));
     }

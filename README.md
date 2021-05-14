@@ -20,6 +20,4 @@ Click highscores to see previous scores.
 
 ## Known Issues
 
-Highscores not sorted.
-
 Still working on styling.
