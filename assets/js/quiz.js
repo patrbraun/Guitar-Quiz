@@ -1,11 +1,10 @@
 console.log("Entering quiz.js");
-
 //Quiz state variable
 var time;
 var qIndex;
 var right;
 var myTimer;
-
+var scores;
 var quizEl = $("#quiz");
 var timerEl = $("#timer");
 var startBtn = $("#start-btn");
@@ -14,10 +13,12 @@ var choicesEl = $("#choices");
 var scoreEl = $("#score");
 
 function start() {
+    //reset variables
     scoreEl.empty();
     time = 60;
     qIndex = 0;
     right = 0;
+    //sets up quiz question page
     startBtn.hide();
     $('#qHead').remove();
     quizEl.prepend($('<h1>').attr('id','qHead').text("Questions"));
@@ -34,12 +35,10 @@ function renderQs() {
     //get current questions object from array
     current = questionsArr[qIndex];
     qIndex++;
-    //update html with current question
-
     //clear old question choices
     questionEl.empty();
     choicesEl.empty();
-
+    //prints question on page
     var text = $('<h2>').text(current.title);
     questionEl.append(text);
     //loop over choices and create new button for new choices
@@ -47,7 +46,7 @@ function renderQs() {
 }
 
 //function to create and append buttons
-function create(item, index, arr) {
+function create(item) {
     var button = $('<button>').text(item);
     //attach click event listener
     button.on('click', qClicked);
@@ -63,10 +62,6 @@ function qClicked() {
         console.log("right");
         right++;
     }
-    // if ($(this).text() !== current.answer) {
-    //     console.log("Wrong");
-    //     wrong++;
-    // }
     //check to see if out of questions, if yes run end quiz function 
     //else get next questions
     if (qIndex === questionsArr.length) {
@@ -86,12 +81,38 @@ function quizEnd() {
     //show final scores
     scoreEl.show();
     //calculate score
-    var temp = ((questionsArr.length - (questionsArr.length - right)) / questionsArr.length) * 100;
-    temp = temp.toFixed(2);
+    var calcScore = ((questionsArr.length - (questionsArr.length - right)) / questionsArr.length) * 100;
+    calcScore = calcScore.toFixed(2);
     //Display score on page
-    var score = $('<h1>').text(temp + "% Correct");
+    var score = $('<h1>').text(calcScore + "% Correct");
     scoreEl.append(score);
     startBtn.show();
+    saveScore(calcScore);
+}
+
+//Function to save scores to local storage
+function saveScore(calcScore){
+    //retrieves scores array from local storage
+    if(localStorage.getItem("scores")){
+        scores = JSON.parse(localStorage.getItem("scores"));
+        console.log(scores);
+    }
+    //creates an array in local storage if one does not already exist
+    else{
+        scores = [];
+    }
+    //asks user for a name
+    var userName = prompt("Enter a name to save your score (Must have a name to save score)")
+    //Scores only save if user enters a name
+    if(userName){
+        var thisScore = {
+            name: userName,
+            score: calcScore
+        };
+        scores.push(thisScore);
+        //saves scores to local storage
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
 }
 
 //time function
@@ -104,19 +125,6 @@ function timer() {
         quizEnd();
     }
 }
-
-//create function for highscores
-
-//write any functions to check how many questions user got right and display scores
-
-//check to make sure user inputs a name into user prompt
-//save scores to local storage
-//retrieve high scores from local storage
-
-//create object to store user scores
-
-//redirect to highscores page
-//window.location.href
 
 scoreEl.hide();
 quizEl.hide();
