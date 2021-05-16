@@ -16,8 +16,6 @@ Select which answer you think is correct from the options provided.
 
 Continue until you answer all questions or run out of time.
 
+Enter a name to save your score in the popup after the quiz.
+
 Click highscores to see previous scores.
-
-## Known Issues
-
-Still working on styling.
