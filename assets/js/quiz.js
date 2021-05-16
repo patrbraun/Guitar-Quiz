@@ -11,6 +11,9 @@ var startBtn = $("#start-btn");
 var questionEl = $("#question");
 var choicesEl = $("#choices");
 var scoreEl = $("#score");
+var modalOkBtn = $("#modalOk");
+var modalCancelBtn = $("#modalCancel");
+var noNameEl = $("#noName");
 
 function start() {
     //reset variables
@@ -78,16 +81,15 @@ function quizEnd() {
     quizEl.hide();
     //clear time interval
     clearInterval(myTimer);
-    //show final scores
-    scoreEl.show();
     //calculate score
     var calcScore = ((questionsArr.length - (questionsArr.length - right)) / questionsArr.length) * 100;
     calcScore = calcScore.toFixed(2);
-    //Display score on page
-    var score = $('<h1>').text(calcScore + "% Correct");
-    scoreEl.append(score);
+    //Display score on the modal
+    $('#theirScore').text(calcScore);
     startBtn.show();
-    saveScore(calcScore);
+    //Shows the modal
+    noNameEl.hide();
+    $("#staticBackdrop").modal();
 }
 
 //Function to save scores to local storage
@@ -101,19 +103,24 @@ function saveScore(calcScore){
     else{
         scores = [];
     }
-    //asks user for a name
-    var userName = prompt("Enter a name to save your score (Must have a name to save score)")
-    //Scores only save if user enters a name
+    //Gets userName and score values, then saves to an object
+    var userName = $('#username').val();
+    var score = $('#theirScore').text();
     if(userName){
         var thisScore = {
             name: userName,
-            score: calcScore
+            score: score
         };
         scores.push(thisScore);
         //sorts scores from largest to smallest
         scores.sort((x,y) => y.score - x.score);
         //saves scores to local storage
         localStorage.setItem("scores", JSON.stringify(scores));
+        $("#staticBackdrop").modal('toggle');
+        noNameEl.hide();
+    }
+    else{
+        noNameEl.show();
     }
 }
 
@@ -131,3 +138,9 @@ function timer() {
 scoreEl.hide();
 quizEl.hide();
 startBtn.on("click", start);
+modalOkBtn.on("click", saveScore);
+
+//Cancels the score save
+modalCancelBtn.on("click", function(){
+    $("#staticBackdrop").modal('toggle');
+});
