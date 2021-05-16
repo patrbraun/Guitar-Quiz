@@ -1,10 +1,11 @@
 console.log("Entering highscore.js");
 
 var scoresEl = $("#scores");
-var refreshEl = $("#refresh-btn");
+var highscoreEl = $("#highscoreBtn");
 
 //prints out the highscores
 function printScores(){
+    console.log("Printing scores");
     scoresEl.empty();
     //function that retrieves scores from local storage
     //display on page
@@ -16,4 +17,5 @@ function printScores(){
     }
 }
 
-refreshEl.on("click", printScores);
+//Prints scores when the pages loads
+window.addEventListener("load", printScores);

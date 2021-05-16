@@ -12,17 +12,19 @@
 </head>
 <body>
 
-    <header>
-        <h1>Highscores</h1>
-        <nav>
-            <li><a href="index.html">Return to quiz</a></li>
-        </nav>
-        <div><button type="button" id="refresh-btn" class="btn btn-primary btn-lg">Refresh</button></div>
-    </header>
-    <main id="scores">
-
-
-    </main>
+    <section section class="container">
+        <section class="row justify-content-center">
+            <h1>Highscores</h1>
+        </section>
+        <section class="row justify-content-center">
+            <div><a href="index.html"><button type="button" id="return-btn" class="btn btn-primary btn-lg">Return to Quiz</button></a></div>
+            <div><button type="button" id="highscoreBtn" class="btn btn-secondary btn-lg">Highscores</button></div>
+        </section>
+        <section class="col-12 justify-content-center d-flex">
+            <main id="scores"></main>
+        </section>
+    </section>
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
