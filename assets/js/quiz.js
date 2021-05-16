@@ -23,8 +23,7 @@ function start() {
     right = 0;
     //sets up quiz question page
     startBtn.hide();
-    $('#questionHeader').text("Questions");
-    timerEl.text("Time left: " + time + " seconds");
+    timerEl.text(" Time left: " + time + " seconds");
     quizEl.show();
     scoreEl.hide();
     console.log("start");
