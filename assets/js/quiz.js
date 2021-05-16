@@ -23,9 +23,8 @@ function start() {
     right = 0;
     //sets up quiz question page
     startBtn.hide();
-    $('#qHead').remove();
-    quizEl.prepend($('<h1>').attr('id','qHead').text("Questions"));
-    timerEl.text(time);
+    $('#questionHeader').text("Questions");
+    timerEl.text("Time left: " + time + " seconds");
     quizEl.show();
     scoreEl.hide();
     console.log("start");
@@ -50,7 +49,7 @@ function renderQs() {
 
 //function to create and append buttons
 function create(item) {
-    var button = $('<button>').text(item);
+    var button = $('<button class="m-1">').text(item);
     //attach click event listener
     button.on('click', qClicked);
     //Display button
@@ -105,11 +104,11 @@ function saveScore(calcScore){
     }
     //Gets userName and score values, then saves to an object
     var userName = $('#username').val();
-    var score = $('#theirScore').text();
+    var roundScore = $('#theirScore').text();
     if(userName){
         var thisScore = {
             name: userName,
-            score: score
+            score: roundScore
         };
         scores.push(thisScore);
         //sorts scores from largest to smallest
@@ -128,7 +127,7 @@ function saveScore(calcScore){
 function timer() {
     time--;
     //display timer on page
-    timerEl.text(time);
+    timerEl.text("Time left: " + time + " seconds");
     //if time hits 0 run quizEnd()
     if (time == 0) {
         quizEnd();
